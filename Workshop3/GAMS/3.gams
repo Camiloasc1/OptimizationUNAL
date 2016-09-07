@@ -1,0 +1,42 @@
+Sets
+    i   types of bus / P, G / ;
+
+Parameters
+
+     a(i)   cost
+       /    P   600000
+            G   800000 /
+
+     b(i)   available
+       /    P   8
+            G   10 /
+
+     c(i)  size
+       /    P   40
+            G   50 / ;
+
+Variables
+     x(i)   rented buses
+     z      total cost ;
+
+Positive Variable x ;
+
+Equations
+     cost           objective function
+     available(i)   available buses
+     drivers        available drivers
+     passengers     carry all passengers ;
+
+cost ..             z  =e=  sum(i, x(i)*a(i)) ;
+
+available(i) ..     x(i)  =l=  b(i) ;
+
+drivers ..          sum(i, x(i))  =l=  9 ;
+
+passengers ..       sum(i, x(i)*c(i))  =g=  400 ;
+
+Model buses /all/ ;
+
+Solve buses using lp minimizing z ;
+
+Display x.l, x.m ;
