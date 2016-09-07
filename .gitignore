@@ -136,3 +136,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# GAMS
+
+*.lst
