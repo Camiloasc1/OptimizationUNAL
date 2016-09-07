@@ -1,0 +1,35 @@
+Sets
+    i   types of burger / C, Q / ;
+
+Parameters
+
+     a(i)   profit
+       /    C   2000
+            Q   1500 /
+
+     b(i)  recipe
+       /    C   0.25
+            Q   0.2 / ;
+
+Variables
+     x(i)   sold burgers
+     z      total profit ;
+
+Positive Variable x ;
+
+Equations
+     profit     objective function
+     demand     old burgers
+     meal       meal used ;
+
+profit ..       z  =e=  sum(i, x(i)*a(i)) ;
+
+demand ..       sum(i, x(i))  =l=  900 ;
+
+meal ..         sum(i, x(i)*b(i))  =l=  200 ;
+
+Model mcdonalds /all/ ;
+
+Solve mcdonalds using lp maximizing z ;
+
+Display x.l, x.m ;
