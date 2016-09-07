@@ -1,0 +1,37 @@
+Sets
+    i   types of supplement / A, B / ;
+
+Parameters
+
+     a(i)   calories
+       /    A   4.5
+            B   1.5 / ;
+
+Variables
+     x(i)   recipe
+     z      total calories ;
+
+Positive Variable x ;
+
+Equations
+     calories   calories in recipe
+     proportion A>=B
+     max        maximum of A+B
+     min        minimum of A+B
+     limit      limit of A ;
+
+calories ..     z  =e=  sum(i, x(i)*a(i)) ;
+
+proportion ..   x('A')  =g=  x('B') ;
+
+max ..          sum(i, x(i))  =l=  150 ;
+
+min ..          sum(i, x(i))  =g=  50 ;
+
+limit ..        x('A')  =l=  100 ;
+
+Model foodsupplements /all/ ;
+
+Solve foodsupplements using lp minimizing z ;
+
+Display x.l, x.m ;
