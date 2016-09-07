@@ -1,0 +1,35 @@
+Sets
+     i   invests        / A, B /
+     j   time points    / year1*year3 / ;
+
+Parameters
+
+     a(i)  profit
+       /    A   1.7
+            B   3.0  / ;
+
+Variables
+     x(i,j)  invests in time points
+     z       total transportation costs in thousands of dollars ;
+
+Positive Variable x ;
+
+Equations
+     final  at year 3
+     year0  at year 0
+     year1  at year 1
+     year2  at year 2 ;
+
+final ..    z  =e=  sum(i, x(i,'year3')*a(i)) ;
+
+year0 ..    sum(i, x(i,'year1'))  =e=  100000 ;
+
+year1 ..    1.7*x('A','year1')  =e=  x('A','year2') + x('B','year3') ;
+
+year2 ..    1.7*x('A','year2') + 3.0*x('B','year1')   =e=  x('A','year3') ;
+
+Model invests /all/ ;
+
+Solve invests using lp maximizing z ;
+
+Display x.l, x.m ;
