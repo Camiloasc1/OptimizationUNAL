@@ -13,6 +13,13 @@ A_eq = [
 ]
 b_eq = [100000, 0, 0]
 
-res = linprog(c, A_eq=A_eq, b_eq=b_eq)
+
+def callback(xk, **kwargs):
+    np.set_printoptions(precision=3)
+    np.set_printoptions(suppress=True)
+    print(kwargs)
+
+
+res = linprog(c, A_eq=A_eq, b_eq=b_eq, callback=callback)
 print(res)
 print(100000 * 1.7 * 3.0)

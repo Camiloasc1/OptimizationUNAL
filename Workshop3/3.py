@@ -10,5 +10,12 @@ b_ub = [9, -400]
 
 bounds = ((0, 8), (0, 10))
 
-res = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=bounds)
+
+def callback(xk, **kwargs):
+    np.set_printoptions(precision=3)
+    np.set_printoptions(suppress=True)
+    print(kwargs)
+
+
+res = linprog(c, A_ub=A_ub, b_ub=b_ub, bounds=bounds, callback=callback)
 print(res)

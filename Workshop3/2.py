@@ -8,5 +8,12 @@ A_ub = [
 ]
 b_ub = [900, 200]
 
-res = linprog(c, A_ub=A_ub, b_ub=b_ub)
+
+def callback(xk, **kwargs):
+    np.set_printoptions(precision=3)
+    np.set_printoptions(suppress=True)
+    print(kwargs)
+
+
+res = linprog(c, A_ub=A_ub, b_ub=b_ub, callback=callback)
 print(res)
