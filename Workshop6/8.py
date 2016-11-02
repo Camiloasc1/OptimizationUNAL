@@ -1,4 +1,5 @@
-from Workshop6.EdmondsKarp import *
+from Workshop6.Graph import *
+from Workshop6.EdmondsKarp import EdmondsKarp
 
 C = {}
 makeDLinkW(C, 'm1', 't1', 8)
