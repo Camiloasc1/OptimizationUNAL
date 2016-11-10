@@ -1,7 +1,7 @@
 # dot -Tps G.gv -o G.png
 
 
-def printNDGraph(G, E):
+def printPrimGraph(G, E):
     printed = []
     print('graph {')
     for u in G:
@@ -16,5 +16,17 @@ def printNDGraph(G, E):
     print('}')
 
 
-def printDGraph(G, E):
-    pass
+def printEdmonsKarpGraph(C, F):
+    print('digraph {')
+    for u in C:
+        for v in C[u]:
+            R = C[u][v] - F[u][v]
+            if R == 0:
+                print(u, '->', v,
+                      '[label="' + str(F[u][v]) + '/' + str(R) + '/' + str(C[u][v]) + '",weight="' + str(
+                          C[u][v]) + '",color="red"]' + ';')
+            else:
+                print(u, '->', v,
+                      '[label="' + str(F[u][v]) + '/' + str(R) + '/' + str(C[u][v]) + '",weight="' + str(
+                          C[u][v]) + '"]' + ';')
+    print('}')
